@@ -1,0 +1,3 @@
+git add .
+git commit -m "Rename folder wedding_invitation to wedding-invitation"
+git push
