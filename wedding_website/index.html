@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="invitation-card">
+      <h2 style="color:#bfc1c2; font-family:'Lora',serif; font-size:2em; margin-bottom:10px; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Always By Your Side</h2>
+      <p style="font-size:1.1em; color:#bfc1c2; margin-bottom:18px; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Celebrating <span style="font-weight:bold; color:#a7a9ac;">25 Years of Love</span></p>
+      <div style="margin-bottom:18px;">
+        <span style="display:block; font-size:1.3em; color:#bfc1c2; font-weight:bold; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Andy Arslan Djunaid</span>
+        <span style="font-size:1.5em; color:#a7a9ac; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">&amp;</span>
+        <span style="display:block; font-size:1.3em; color:#bfc1c2; font-weight:bold; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Ita Winarni</span>
+      </div>
+      <div style="margin-bottom:18px;">
+        <span style="font-size:1.1em; color:#bfc1c2; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Monday, 28 July 2025</span><br>
+        <span style="font-size:1.1em; color:#bfc1c2; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Mutiara Ballroom</span><br>
+        <span style="font-size:1.1em; color:#bfc1c2; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">JW Marriott Hotel</span><br>
+        <span style="font-size:1.1em; color:#bfc1c2; text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;">Mega Kuningan, Jakarta</span>
+      </div>
+      <div style="margin-top:10px;">
+        <span style="font-size:0.95em; color:#fff; background:linear-gradient(90deg,#bfc1c2 0%,#e5e6e7 100%); padding:6px 16px; border-radius:8px; display:inline-block; box-shadow:0 1px 4px #aaa;">Invitation valid for 1 person</span>
+      </div>
+    </div>
+    <!-- RSVP Form -->
+    <a id="rsvp-link" href="wishes page/wishes.html">
+      <button id="rsvp-btn" type="button">Open The Invitation</button>
+    </a>
+
+  <script src="script.js"></script>
+  <script>
+    // Guest name form logic
+    document.getElementById('guest-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('guest-name-input').value.trim();
+      if(name) {
+        localStorage.setItem('guestName', name);
+        alert('Thank you, ' + name + '! Your name has been saved.');
+      } else {
+        alert('Please enter your name.');
+      }
+    });
+
+    // RSVP Button transition effect
+    document.getElementById('rsvp-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = document.querySelector('.invitation-card');
+      card.style.transition = 'opacity 0.7s cubic-bezier(.4,2,.6,1), transform 0.7s cubic-bezier(.4,2,.6,1)';
+      card.style.opacity = '0';
+      card.style.transform = 'scale(0.92) translateY(40px)';
+      setTimeout(function() {
+        window.location.href = document.getElementById('rsvp-link').getAttribute('href');
+      }, 650);
+    });
+  </script>
+</body>
+</html>

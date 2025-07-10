@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Wishes</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    body {
+      background-image: url('../asset/group 322.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wishes-container {
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+      padding: 32px 18px;
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+      min-height: unset;
+      display: block;
+    }
+    .wishes-container h2 {
+      color: #bfc1c2;
+      font-family: 'Great Vibes', cursive !important;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;
+      letter-spacing: 1px;
+      font-weight: 400;
+    }
+    .wishes-container input, .wishes-container textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #bfc1c2;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 1.1em;
+      font-family: 'Lora', serif;
+      color: #555;
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 1px 4px #aaa;
+    }
+    .wishes-container textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .attendance-btns button {
+      margin: 0 10px;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      background: linear-gradient(90deg,#bfc1c2 0%,#e5e6e7 100%);
+      color: #555;
+      font-weight: bold;
+      box-shadow: 0 1px 4px #aaa;
+      transition: background 0.2s, color 0.2s;
+    }
+    .attendance-btns button.no {
+      background: linear-gradient(90deg,#e57373 0%,#f7b2b2 100%);
+      color: #fff;
+    }
+    .attendance-btns button:active {
+      opacity: 0.8;
+    }
+    .confirmation-message {
+      margin-top: 25px;
+      color: #2e7d32;
+      font-weight: bold;
+      font-size: 1.1em;
+      font-family: 'Lora', serif;
+    }
+    .wishes-container label, .wishes-container p {
+      color: #bfc1c2;
+      font-family: 'Lora', serif;
+      font-size: 1.1em;
+      text-shadow: 0 2px 8px #fff, 0 1px 1px #aaa;
+    }
+    .wishes-container button[type="submit"] {
+      margin-top: 20px;
+      background: linear-gradient(90deg,#bfc1c2 0%,#e5e6e7 100%);
+      color: #555;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1em;
+      box-shadow: 0 1px 4px #aaa;
+      padding: 10px 24px;
+      border: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .wishes-container button[type="submit"]:hover {
+      background: linear-gradient(90deg,#e5e6e7 0%,#bfc1c2 100%);
+      color: #222;
+    }
+    .wishes-list {
+      margin-top: 40px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: center;
+    }
+    .wish-card {
+      display: flex;
+      align-items: flex-start;
+      background: rgba(255,255,255,0.92);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      padding: 18px 20px 14px 16px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      min-width: 0;
+    }
+    .wish-avatar {
+      width: 38px;
+      height: 38px;
+      background: #e5e6e7;
+      color: #888;
+      font-weight: bold;
+      font-size: 1.5em;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px #bbb;
+    }
+    .wish-content {
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+    }
+    .wish-name {
+      font-weight: bold;
+      font-size: 1.15em;
+      color: #222;
+      margin-bottom: 2px;
+      font-family: 'Lora', serif;
+    }
+    .wish-message {
+      color: #444;
+      font-size: 1em;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+    .wish-meta {
+      color: #888;
+      font-size: 0.95em;
+    }
+    @media (max-width: 600px) {
+      .wishes-container {
+        max-width: 98vw;
+        padding: 24px 4vw;
+      }
+      body {
+        background-attachment: scroll;
+        min-height: 100dvh;
+      }
+      .wish-card {
+        max-width: 98vw;
+        padding: 12px 6vw 10px 4vw;
+      }
+      .wishes-list {
+        margin-top: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wishes-container">
+    <h2>Send Your Wishes & Attendance Confirmation</h2>
+    <form id="wishes-form">
+      <input type="text" id="guest-name" name="guest-name" placeholder="Enter your name..." style="padding: 10px 16px; border-radius: 8px; border: 1px solid #bfc1c2; font-size: 1.1em; margin-bottom: 16px; width: 100%; max-width: 340px; box-shadow: 0 1px 4px #aaa; color: #555; background: rgba(255,255,255,0.7);">
+      <textarea id="wish" placeholder="Write your wishes or prayers for the couple..." required></textarea>
+      <div class="attendance-btns">
+        <button type="button" class="yes" id="attend-yes">Will Attend</button>
+        <button type="button" class="no" id="attend-no">Unable to Attend</button>
+      </div>
+      <input type="hidden" id="attendance" name="attendance" value="">
+      <button type="submit" style="margin-top:20px;">Submit</button>
+    </form>
+    <div class="confirmation-message" id="confirmation-message"></div>
+    <div id="wishes-list" class="wishes-list"></div>
+  </div>
+  <script>
+    // Attendance button logic
+    const attendYes = document.getElementById('attend-yes');
+    const attendNo = document.getElementById('attend-no');
+    const attendanceInput = document.getElementById('attendance');
+    let selectedAttendance = '';
+
+    attendYes.addEventListener('click', function() {
+      selectedAttendance = 'Hadir';
+      attendanceInput.value = 'Hadir';
+      attendYes.style.background = 'linear-gradient(90deg,#388e3c 0%,#a8e063 100%)';
+      attendYes.style.color = '#fff';
+      attendNo.style.background = 'linear-gradient(90deg,#e57373 0%,#f7b2b2 100%)';
+      attendNo.style.color = '#fff';
+    });
+    attendNo.addEventListener('click', function() {
+      selectedAttendance = 'Tidak Hadir';
+      attendanceInput.value = 'Tidak Hadir';
+      attendNo.style.background = 'linear-gradient(90deg,#b71c1c 0%,#e57373 100%)';
+      attendNo.style.color = '#fff';
+      attendYes.style.background = 'linear-gradient(90deg,#bfc1c2 0%,#e5e6e7 100%)';
+      attendYes.style.color = '#555';
+    });
+
+    // Helper: format date
+    function formatDate(date) {
+      const d = new Date(date);
+      const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+      return d.toLocaleDateString('en-US', options);
+    }
+
+    // Render wishes
+    function renderWishes() {
+      const wishes = JSON.parse(localStorage.getItem('wishesList') || '[]');
+      const wishesList = document.getElementById('wishes-list');
+      wishesList.innerHTML = wishes.reverse().map(wish => `
+        <div class="wish-card">
+          <div class="wish-avatar">${wish.name.charAt(0).toUpperCase()}</div>
+          <div class="wish-content">
+            <div class="wish-name">${wish.name}</div>
+            <div class="wish-message">${wish.message}</div>
+            <div class="wish-meta">${formatDate(wish.time)}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // On submit, save wish
+    document.getElementById('wishes-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const guestName = document.getElementById('guest-name').value.trim();
+      const wish = document.getElementById('wish').value.trim();
+      if (!guestName) {
+        alert('Please enter your name.');
+        return;
+      }
+      if (!wish) {
+        alert('Please write your wishes or prayers first.');
+        return;
+      }
+      if (!selectedAttendance) {
+        alert('Please select your attendance confirmation.');
+        return;
+      }
+      // Save to localStorage
+      const wishes = JSON.parse(localStorage.getItem('wishesList') || '[]');
+      wishes.push({
+        name: guestName,
+        message: wish + (attendanceInput.value ? ` (${attendanceInput.value})` : ''),
+        time: new Date().toISOString()
+      });
+      localStorage.setItem('wishesList', JSON.stringify(wishes));
+      renderWishes();
+      document.getElementById('confirmation-message').textContent = `Thank you for your wishes and confirmation!`;
+      document.getElementById('wishes-form').reset();
+      selectedAttendance = '';
+      attendanceInput.value = '';
+      attendYes.style.background = 'linear-gradient(90deg,#bfc1c2 0%,#e5e6e7 100%)';
+      attendYes.style.color = '#555';
+      attendNo.style.background = 'linear-gradient(90deg,#e57373 0%,#f7b2b2 100%)';
+      attendNo.style.color = '#fff';
+    });
+
+    // On load, show wishes
+    renderWishes();
+  </script>
+</body>
+</html>
